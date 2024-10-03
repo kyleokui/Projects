@@ -1,0 +1,1 @@
+This was a design of the final project for Physics 201 final. I desgined a game to record the reaction time of the user. I soldered touch sensors, LEDS, resistors to wires that would be connected to a Rasberry Pi Zero.
