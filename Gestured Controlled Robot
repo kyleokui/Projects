@@ -1,16 +1,14 @@
 Gestured controlled robot was assembled for Introduction to electrical and electronic circuits for mechanical engineering final project. Object of the project was to implement process of using a sensor to communicate to its master and be able to execute an action like driving forward, backward, left, anf right. 
 Tools and materials used-
 `	2 ESP32 
-  1 L298N motor drivers
+ 	1 L298N motor drivers
 	1 set of Mecanum Wheels(4 wheels with screws and nuts)
-  4 servo motors
+  	4 servo motors
 	1 accelerometer 
-  2 breadboards
+  	2 breadboards
 	male/female wires
 
 As the accelerometer detects a tilt in axis it communicates the x,y,z values to the esp32 in the breadbraod using example code found in Arduino IDE. The ESP32 then tells that value to the ESP32 on the car. This code is where we defined where to enable the pin output and send a high current through to spin the servo motor and wheel. We used a 7.6V basttery to supply this current and a L298N mottor driver to protect the ESP32. The two ESP32 communicate through wifi using ESPNOW. 
-Here is a diagram of the wiring of our car. You can see that we attached the back servo motors to the front wheels. So if the front right wheel moves forward to turn left the back right wheel also goes forward. Same principle applies for going right. To go back and forward we send a high input to both front servo motors. To stop the car we send a low input to both.
-
-Below is the link to the video demonstration of the car moving forward, backward, left, and right based on how the user(upper left in the video) title the breadboard.
+You can see that we attached the back servo motors to the front wheels. So if the front right wheel moves forward to turn left the back right wheel also goes forward. Same principle applies for going right. To go back and forward we send a high input to both front servo motors. To stop the car we send a low input to both.
 
 
