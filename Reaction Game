@@ -1,1 +1,3 @@
-This was a design of the final project for Physics 201 final. I desgined a reaction game to record the reaction time of the user. I soldered woires to LEDS, resistors to my rasberry pi and touch sensors. The touch sensors were attached to the three pillars sticking up while the oval object is to be fit over the pillars and have a degree of freedom in the y axis(can move up and down)
+This was a design of the final project for Physics 201 final. I desgined a reaction game to record the reaction time of the user. 
+I soldered woires to LEDS, resistors to my rasberry pi and touch sensors. The touch sensors were attached to the three pillars 
+sticking up while the oval object is to be fit over the pillars and have a degree of freedom in the y axis(can move up and down)
