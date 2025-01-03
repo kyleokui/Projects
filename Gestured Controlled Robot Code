@@ -1,0 +1,101 @@
+#include <Wire.h>
+const int ENABLE1A = 14;
+const int IN1A =27;
+const int IN1B = 26;
+
+
+const int IN2A =25;
+const int IN2B = 33;
+
+// Variables to store accelerometer data
+int16_t x, y;
+
+// I2C pins (you can change these depending on your setup)
+#define SDA_PIN 21
+#define SCL_PIN 22
+
+void setup() {
+  // Start serial communication
+  Serial.begin(115200);
+
+  // Initialize I2C as Slave
+  Wire.begin(SDA_PIN, SCL_PIN, SLAVE_ADDR);
+  Wire.onReceive(receiveData);  // Set up the receive function
+
+  Serial.println("Slave ESP32 initialized, waiting for data...");
+}
+
+void loop() {
+  // Add a delay to avoid excessive processing
+  delay(1000);
+}
+
+void receiveData(int byteCount) {
+  // Check if the correct number of bytes are received (3 * 2 bytes for XY)
+  if (byteCount == 6) {
+    Wire.readBytes((byte*)&x, sizeof(x));  // Read X value
+    Wire.readBytes((byte*)&y, sizeof(y));  // Read Y value
+
+    // Print the received values to Serial Monitor
+    Serial.print("Received X: ");
+    Serial.print(x);
+    Serial.print("\tY: ");
+    Serial.print(y);
+  }
+}
+
+void setup() {
+  // put your setup code here, to run once:
+pinMode (ENABLE1A, OUTPUT);
+pinMode (IN1A, OUTPUT);
+pinMode (IN1B, OUTPUT);
+pinMode (IN2A, OUTPUT);
+pinMode (IN2B, OUTPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+// Motor 1
+	if (x<0){
+		//forward
+		analogWrite (ENABLE1A, 200);
+		digitalWrite (IN1A, HIGH);
+		digitalWrite (IN1B, LOW);
+		
+		//for Motor 2
+		digitalWrite (IN2A, HIGH);
+		digitalWrite (IN2B, LOW);
+	
+	}
+	delay (1000);
+	if (x>0){
+		//backward 
+		//for motor1
+		digitalWrite (IN1A, LOW);
+		digitalWrite (IN1B, HIGH);
+		//for motor 2
+		digitalWrite  (IN2A, LOW);
+		digitalWrite (IN2B, HIGH);
+	}
+	delay (1000);
+	if (x>0 && y<0){
+		//left 
+		//for motor1
+		digitalWrite (IN1A, LOW);
+		digitalWrite (IN1B, LOW);
+		//for motor 2
+		digitalWrite  (IN2A, HIGH);
+		digitalWrite (IN2B, LOW);
+	}
+	if (x>0 && y<0){
+		//right 
+		//for motor1
+		digitalWrite (IN1A, HIGH);
+		digitalWrite (IN1B, LOW);
+		//for motor 2
+		digitalWrite  (IN2A, LOW);
+		digitalWrite (IN2B, LOW);
+	}
+	delay(3000);
+
+}
